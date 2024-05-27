@@ -1,3 +1,4 @@
+lxml
 pandas==1.0.3
 requests
 xlrd==1.2.0
