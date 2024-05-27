@@ -6,8 +6,7 @@ on:
   push:
     branches: [ main ]
   schedule:
-    - cron:  '0 0 * * 6'
-  #  At 00:00 on Saturday
+    - cron:  '0 0 * * *'
 
 jobs:
   unir:
