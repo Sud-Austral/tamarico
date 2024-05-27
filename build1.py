@@ -94,7 +94,9 @@ if __name__ == '__main__':
         "idsea": ""
     }
 
-    response = requests.post(url, headers=headers, data=data)
+    #response = requests.post(url, headers=headers, data=data)
+    response = requests.post(url, data=data)
+    print("Primer data")
     df = pd.read_html(response.text)
     dfMaster = df[0].copy()
     dfMaster["URL"] = dfMaster["#"].apply(getURLDetalle)
