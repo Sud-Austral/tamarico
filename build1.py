@@ -123,8 +123,8 @@ if __name__ == '__main__':
             response2 = requests.get("https://api-ssa.sma.gob.cl/api/v1/documentos/incidente/descargar", params=params)
             with open(f"{directorio}/{name}", "wb") as f:
                 f.write(response2.content)
-        except:
-            print(f"Error en {name} {idFile}")
+        except Exception as e:
+            print(f"Error en {name} {idFile}, error {e}")
 
     print("********************************Tercer data*************************************************")
     dfMaster  .to_excel("Master.xlsx"  ,index=False)
