@@ -123,7 +123,7 @@ if __name__ == '__main__':
             with open(f"{directorio}/{name}", "wb") as f:
                 f.write(response2.content)
         except:
-            print(f"Error en {name}")
+            print(f"Error en {name} {idFile}")
 
     print("********************************Tercer data*************************************************")
     dfMaster  .to_excel("Master.xlsx"  ,index=False)
