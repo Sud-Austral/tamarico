@@ -121,6 +121,7 @@ if __name__ == '__main__':
         response2 = requests.get("https://api-ssa.sma.gob.cl/api/v1/documentos/incidente/descargar", params=params)
         with open(f"{directorio}/{name}", "wb") as f:
             f.write(response2.content)
+    print("********************************Tercer data*************************************************")
     dfMaster  .to_excel("Master.xlsx"  ,index=False)
     dfDescarga.to_excel("Archivos.xlsx",index=False)
 
