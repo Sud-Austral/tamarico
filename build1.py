@@ -115,6 +115,7 @@ if __name__ == '__main__':
             pass
         try:
             respuesta = requests.get(f"https://api-ssa.sma.gob.cl/api/v1/GetDocumentoById/{idFile}")
+            print(respuesta.json()["data"]["InternalFileName"])
             #print(respuesta.json()["data"]["InternalFileName"])
             params = {
                 "nombre": respuesta.json()["data"]["InternalFileName"]
