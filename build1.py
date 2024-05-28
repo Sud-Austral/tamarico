@@ -10,6 +10,7 @@ def getURLDetalle(name):
     return f"https://snifa.sma.gob.cl/SeguimientoAmbiental/Ficha/{name}"
 
 def getDatos(url):
+
     response = requests.get(url)
     idFicha = url[-7:]
     # Verificar si la solicitud fue exitosa
@@ -102,6 +103,7 @@ if __name__ == '__main__':
     dfMaster["URL"] = dfMaster["#"].apply(getURLDetalle)
     dfMaster[["idFicha","Titulo","Periodo","Frecuencia","SubComponente","UnidadFiscalizable","urlUnidadFiscalizable","descripcion","df"]] = dfMaster["URL"].apply(getDatos).apply(pd.Series)
     dfDescarga = pd.concat(list(dfMaster["df"]))
+    print("********************************Segundo data*************************************************")
     for i in dfDescarga.itertuples():
         directorio = i[6]
         name = i[2]
