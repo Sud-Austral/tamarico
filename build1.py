@@ -108,19 +108,23 @@ if __name__ == '__main__':
         directorio = i[6]
         name = i[2]
         url = i[5]
-        idFile = url[61:]
+        idFile = url[61:]        
         try:
             os.mkdir(directorio)
         except:
             pass
-        respuesta = requests.get(f"https://api-ssa.sma.gob.cl/api/v1/GetDocumentoById/{idFile}")
-        #print(respuesta.json()["data"]["InternalFileName"])
-        params = {
-            "nombre": respuesta.json()["data"]["InternalFileName"]
-        }
-        response2 = requests.get("https://api-ssa.sma.gob.cl/api/v1/documentos/incidente/descargar", params=params)
-        with open(f"{directorio}/{name}", "wb") as f:
-            f.write(response2.content)
+        try:
+            respuesta = requests.get(f"https://api-ssa.sma.gob.cl/api/v1/GetDocumentoById/{idFile}")
+            #print(respuesta.json()["data"]["InternalFileName"])
+            params = {
+                "nombre": respuesta.json()["data"]["InternalFileName"]
+            }
+            response2 = requests.get("https://api-ssa.sma.gob.cl/api/v1/documentos/incidente/descargar", params=params)
+            with open(f"{directorio}/{name}", "wb") as f:
+                f.write(response2.content)
+        except:
+            print(f"Error en {name}")
+
     print("********************************Tercer data*************************************************")
     dfMaster  .to_excel("Master.xlsx"  ,index=False)
     dfDescarga.to_excel("Archivos.xlsx",index=False)
